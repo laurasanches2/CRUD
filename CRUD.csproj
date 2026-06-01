@@ -10,16 +10,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="DotNetEnv" Version="3.2.0" />
-      <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.26" />
+        <PackageReference Include="DotNetEnv" Version="3.2.0"/>
+        <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.26"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="bin\Debug\net8.0-windows\.env" />
+        <None Include="bin\Debug\net8.0-windows\.env"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="bin\Debug\net8.0-windows\" />
+        <Folder Include="bin\Debug\net8.0-windows\"/>
     </ItemGroup>
 
 </Project>

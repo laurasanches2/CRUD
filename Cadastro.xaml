@@ -22,7 +22,8 @@
             <Label Content="Senha:" FontWeight="Bold" Margin="0 0 0 2" />
             <PasswordBox x:Name="TxtSenha" Height="25" Margin="0 0 0 20" VerticalContentAlignment="Center" />
 
-            <Button x:Name="BtnCadastrar" Content="Cadastrar" Padding="10,8" FontWeight="Bold" Click="BtnCadastrar_OnClick" />
+            <Button x:Name="BtnCadastrar" Content="Cadastrar" Padding="10,8" FontWeight="Bold"
+                    Click="BtnCadastrar_OnClick" />
         </StackPanel>
     </Grid>
 </Window>
