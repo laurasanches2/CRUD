@@ -34,7 +34,7 @@ public partial class MainWindow : Window
             {
                 comando.Parameters.AddWithValue("@senha", TxtSenha.Password);
                 comando.Parameters.AddWithValue("@username", TxtUsuario.Text);
-                
+
                 try
                 {
                     conexao.Open();
@@ -57,7 +57,19 @@ public partial class MainWindow : Window
                     Console.WriteLine(exception);
                     return;
                 }
+
+                {
+                    
+                    
+                }
+                
             }
         }
+    }
+
+    private void BtnIrParaCadastro_OnClick(object sender, RoutedEventArgs e)
+    {
+        Cadastro janelaCadastro = new Cadastro();
+        janelaCadastro.ShowDialog();
     }
 }
