@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using CRUD.Modelos;
 using MySql.Data.MySqlClient;
 
 namespace CRUD;
@@ -46,7 +47,13 @@ public partial class MainWindow : Window
 
             while (leitor.Read())
             {
-                MessageBox.Show(leitor.GetString(1));
+                var usuarioBanco = new Usuario();
+                usuarioBanco.Id = leitor.GetInt32(0);
+                usuarioBanco.Nome = leitor.GetString(1);
+                usuarioBanco.Email = leitor.GetString(2);
+                usuarioBanco.senha = leitor.GetString(3);
+                usuarioBanco.Username = leitor.GetString(4);
+                new MeuPerfil(usuarioBanco).Show();
             }
         }
         catch (Exception exception)

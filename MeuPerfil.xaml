@@ -83,7 +83,9 @@
                                 Content="Salvar"
                                 Width="120" Height="40"
                                 Style="{StaticResource BotaoArredondado}"
-                                Background="#2563EB" Foreground="White" />
+                                Background="#2563EB" Foreground="White"
+                                Click="BtnSalvar_OnClick"/>
+                                
                     </StackPanel>
                 </StackPanel>
 
