@@ -64,7 +64,7 @@
                         Foreground="#2563EB"
                         BorderThickness="0"
                         Margin="0,15,0,0"
-                        Cursor="Hand" Click="BtnIrParaCadastro_OnClick">
+                        Cursor="Hand" Click="BtnCadastro_OnClick">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Template">

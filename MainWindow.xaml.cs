@@ -67,9 +67,11 @@ public partial class MainWindow : Window
         }
     }
 
-    private void BtnIrParaCadastro_OnClick(object sender, RoutedEventArgs e)
+    private void BtnCadastro_OnClick(object sender, RoutedEventArgs e)
     {
-        Cadastro janelaCadastro = new Cadastro();
+       var janelaCadastro = new Cadastro();
+        Hide();
         janelaCadastro.ShowDialog();
+        Show();
     }
 }
