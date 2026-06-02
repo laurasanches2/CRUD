@@ -26,50 +26,42 @@ public partial class MainWindow : Window
             return;
         }
 
-        using (var conexao = new MySqlConnection(App.StringConexao))
+
+        using var conexao = new MySqlConnection(App.StringConexao);
+        const string query = "SELECT * FROM usuarios WHERE username = @username AND senha = @senha";
+
+        using var comando = new MySqlCommand(query, conexao);
+        comando.Parameters.AddWithValue("@senha", TxtSenha.Password);
+        comando.Parameters.AddWithValue("@username", TxtUsuario.Text);
+
+        try
         {
-            var query = "SELECT * FROM usuarios WHERE username = @username AND senha = @senha";
-
-            using (var comando = new MySqlCommand(query, conexao))
+            conexao.Open();
+            using var leitor = comando.ExecuteReader();
+            if (!leitor.HasRows)
             {
-                comando.Parameters.AddWithValue("@senha", TxtSenha.Password);
-                comando.Parameters.AddWithValue("@username", TxtUsuario.Text);
-
-                try
-                {
-                    conexao.Open();
-                    using (var leitor = comando.ExecuteReader())
-                    {
-                        if (!leitor.HasRows)
-                        {
-                            MessageBox.Show("Usuario e/ou Senha estão errados.", "Erro!");
-                            return;
-                        }
-
-                        while (leitor.Read())
-                        {
-                            MessageBox.Show(leitor.GetString(1));
-                        }
-                    }
-                }
-                catch (Exception exception)
-                {
-                    Console.WriteLine(exception);
-                    return;
-                }
-
-                {
-                    
-                    
-                }
-                
+                MessageBox.Show("Usuario e/ou Senha estão errados.", "Erro!");
+                return;
             }
+
+            while (leitor.Read())
+            {
+                MessageBox.Show(leitor.GetString(1));
+            }
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine(exception);
+            return;
+        }
+
+        {
         }
     }
 
     private void BtnCadastro_OnClick(object sender, RoutedEventArgs e)
     {
-       var janelaCadastro = new Cadastro();
+        var janelaCadastro = new Cadastro();
         Hide();
         janelaCadastro.ShowDialog();
         Show();
