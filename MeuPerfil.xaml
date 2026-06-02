@@ -1,0 +1,121 @@
+﻿
+<Window x:Class="CRUD.MeuPerfil"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:CRUD"
+        mc:Ignorable="d"
+        Title="Meu Perfil de Usuário" Height="580" Width="750" 
+        WindowStartupLocation="CenterScreen" Background="#F9FAFB">
+    
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.Resources>
+            <Style x:Key="BotaoArredondado" TargetType="Button">
+                <Setter Property="Background" Value="#2563EB" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+
+        <Border Background="White"
+                CornerRadius="8"
+                Padding="30"
+                Width="680"
+                Height="460">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" ShadowDepth="2" Opacity="0.1" />
+            </Border.Effect>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>      <ColumnDefinition Width="200"/>    </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,20,0">
+                    <TextBlock Text="Informações do Perfil"
+                               FontSize="24"
+                               FontWeight="Bold"
+                               Foreground="#111827"
+                               Margin="0,0,0,20" />
+
+                    <Grid Margin="0,0,0,15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="15" /> <ColumnDefinition Width="160" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Nome Completo" FontSize="14" Foreground="#374151" Margin="0,0,0,5" />
+                            <TextBox x:Name="TxtNome" Height="35" VerticalContentAlignment="Center" Padding="5,0" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Usuário" FontSize="14" Foreground="#374151" Margin="0,0,0,5" />
+                            <TextBox x:Name="TxtUsuarioPerfil" Height="35" VerticalContentAlignment="Center" Padding="5,0" />
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock Text="E-mail" FontSize="14" Foreground="#374151" Margin="0,0,0,5" />
+                    <TextBox x:Name="TxtEmail" Height="35" Margin="0,0,0,15" VerticalContentAlignment="Center" Padding="5,0" />
+
+                    <TextBlock Text="Alterar Senha" FontSize="14" Foreground="#374151" Margin="0,0,0,5" />
+                    <PasswordBox x:Name="TxtSenhaPerfil" Height="35" Margin="0,0,0,25" VerticalContentAlignment="Center" Padding="5,0" />
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                        <Button x:Name="BtnCancelar"
+                                Content="Cancelar"
+                                Width="100" Height="40" Margin="0,0,10,0"
+                                Style="{StaticResource BotaoArredondado}"
+                                Background="#F3F4F6" Foreground="#374151" />
+
+                        <Button x:Name="BtnSalvar"
+                                Content="Salvar"
+                                Width="120" Height="40"
+                                Style="{StaticResource BotaoArredondado}"
+                                Background="#2563EB" Foreground="White" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                    <Ellipse Width="120" Height="120">
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="ImgBrushPerfil" 
+                                        ImageSource="https://static.vecteezy.com/ti/vetor-gratis/p1/9292244-default-avatar-icon-vector-of-social-media-user-vetor.jpg" 
+                                        Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+
+                    <Button x:Name="BtnAlterarFoto"
+                            Content="Alterar Foto"
+                            Background="Transparent" Foreground="#2563EB" BorderThickness="0"
+                            Margin="0,15,0,0" Cursor="Hand">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <TextBlock Text="{}{TemplateBinding Content}" HorizontalAlignment="Center" TextDecorations="Underline" />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                        
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
+
