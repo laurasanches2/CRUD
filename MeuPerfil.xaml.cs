@@ -61,25 +61,51 @@ public partial class MeuPerfil : Window
         comando.Parameters.AddWithValue("@id", UsuarioAtual.Id);
         if (senhafoiAlterada) comando.Parameters.AddWithValue("@senha", UsuarioAtual.senha);
 
-            try
+        try
+
+        {
+            conexao.Open();
+            var linhasAfetadas = comando.ExecuteNonQuery();
+            if (linhasAfetadas > 0)
 
             {
-                conexao.Open();
-                var linhasAfetadas = comando.ExecuteNonQuery();
-                if (linhasAfetadas > 0)
-
-                {
-                    MessageBox.Show("Cadastro atualizado com sucesso!");
-                }
-                else
-                {
-                    MessageBox.Show("Erro ao atualizar o cadastro! ");
-                }
+                MessageBox.Show("Cadastro atualizado com sucesso!");
             }
-            catch
-                (Exception exception)
+            else
             {
-                MessageBox.Show("Erro de DB:");
+                MessageBox.Show("Erro ao atualizar o cadastro! ");
             }
+        }
+        catch
+            (Exception exception)
+        {
+            MessageBox.Show("Erro de DB:");
+        }
+    }
+
+    private void Btndeletarperfil_OnClick(object sender, RoutedEventArgs e)
+    {
+        var resultado = MessageBox.Show("Voce tem certeza que deseja excluir o perfil?", "Cofirmação de exclusão.",
+            MessageBoxButton.YesNo, MessageBoxImage.Question);
+        if (resultado == MessageBoxResult.No) return;
+        const string query = "DELETE FROM usuarios WHERE id = @id";
+        using var conexao = new MySqlConnection(App.StringConexao);
+        using var comando = new MySqlCommand(query, conexao);
+        comando.Parameters.AddWithValue("@id", UsuarioAtual.Id);
+        try
+        {
+            conexao.Open();
+            var linhasAfetadas = comando.ExecuteNonQuery();
+            if (linhasAfetadas > 0)
+            {
+                MessageBox.Show("Perfil deletado com sucesso! ");
+                this.Close();
+            }
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine(exception);
+            throw;
+        }
     }
 }

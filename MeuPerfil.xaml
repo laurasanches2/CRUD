@@ -73,11 +73,12 @@
                     <PasswordBox x:Name="TxtSenhaPerfil" Height="35" Margin="0,0,0,25" VerticalContentAlignment="Center" Padding="5,0" />
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-                        <Button x:Name="BtnCancelar"
-                                Content="Cancelar"
+                        <Button x:Name="Btndeletarperfil"
+                                Content="Deletar"
                                 Width="100" Height="40" Margin="0,0,10,0"
                                 Style="{StaticResource BotaoArredondado}"
-                                Background="#F3F4F6" Foreground="#374151" />
+                                Background="#F3F4F6" Foreground="#374151"
+                                Click="Btndeletarperfil_OnClick"/>
 
                         <Button x:Name="BtnSalvar"
                                 Content="Salvar"
