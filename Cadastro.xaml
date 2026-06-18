@@ -74,6 +74,7 @@
                         FontWeight="Bold"
                         BorderThickness="0"
                         Cursor="Hand"
+                        IsDefault="True"
                         Click="BtnCadastrar_OnClick">
                     <Button.Resources>
                         <Style TargetType="Border">

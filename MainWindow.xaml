@@ -53,6 +53,7 @@
                         FontWeight="Bold"
                         BorderThickness="0"
                         Cursor="Hand"
+                        IsDefault="True"
                         Click="BtnLogin_OnClick">
                     <Button.Resources>
                         <Style TargetType="Border">

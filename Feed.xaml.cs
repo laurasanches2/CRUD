@@ -113,4 +113,14 @@ public partial class Feed : Window
             MessageBox.Show(excecao.Message);
         }
     }
+
+    private void btnNovoPoste_OnClick(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void BtnNovoPoste_OnClick(object sender, RoutedEventArgs e)
+    {
+        new NovaPostagem(_usuario).ShowDialog();
+    }
 }
