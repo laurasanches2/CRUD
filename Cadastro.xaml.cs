@@ -5,8 +5,6 @@ namespace CRUD;
 
 public partial class Cadastro : Window
 {
-   
-
     public Cadastro()
     {
         InitializeComponent();
@@ -24,7 +22,8 @@ public partial class Cadastro : Window
         }
 
         using var conexao = new MySqlConnection(App.StringConexao);
-        var query = "INSERT INTO usuarios(nome, username, email, senha) VALUES(@nome, @username, @email, @senha)";
+        const string query =
+            "INSERT INTO usuarios(nome, username, email, senha) VALUES(@nome, @username, @email, @senha)";
 
         using var comando = new MySqlCommand(query, conexao);
         comando.Parameters.AddWithValue("@nome", TxtNome.Text);
