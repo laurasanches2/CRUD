@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using CRUD.Modelos;
 using MySql.Data.MySqlClient;
 
 namespace CRUD;
@@ -8,6 +9,8 @@ public partial class Cadastro : Window
     public Cadastro()
     {
         InitializeComponent();
+        TxtNome.Focus();
+        
     }
 
     private void BtnCadastrar_OnClick(object sender, RoutedEventArgs e)
@@ -23,7 +26,7 @@ public partial class Cadastro : Window
 
         using var conexao = new MySqlConnection(App.StringConexao);
         const string query =
-            "INSERT INTO usuarios(nome, username, email, senha) VALUES(@nome, @username, @email, @senha)";
+            "INSERT INTO usuarios(nome, username, email, senha) VALUES(@nome, @username, @email, @senha);SELECT LAST_INSERT_ID();";
 
         using var comando = new MySqlCommand(query, conexao);
         comando.Parameters.AddWithValue("@nome", TxtNome.Text);
@@ -34,19 +37,27 @@ public partial class Cadastro : Window
         try
         {
             conexao.Open();
-            var linhasAfetadas = comando.ExecuteNonQuery();
-            if (linhasAfetadas > 0) MessageBox.Show("Cadastro realizado!");
+            var idGerado = comando.ExecuteScalar();
+            if (idGerado is null) throw new Exception("Cadastro realizado!");
+
+            new Feed(new Usuario
+            {
+                Nome = TxtNome.Text,
+                Email = TxtUsername.Text,
+                Username = TxtUsername.Text,
+                Id = Convert.ToInt32(idGerado)
+            }).Show();
+            Close();
         }
         catch (Exception exception)
         {
-            if (exception is MySqlException erroSql)
-                if (erroSql.Number == 1062)
-                {
-                    MessageBox.Show("O email ou username já foram utilizados");
-                    return;
-                }
+            if (exception is MySqlException { Number: 1062 })
+            {
+                MessageBox.Show("O email ou username já foram utilizados");
+                return;
+            }
 
-            Console.WriteLine(exception);
+            MessageBox.Show(exception.Message);
         }
     }
 }

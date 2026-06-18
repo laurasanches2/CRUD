@@ -9,6 +9,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        TxtUsuario.Focus();
     }
 
     private void BtnLogin_OnClick(object sender, RoutedEventArgs e)
@@ -46,13 +47,14 @@ public partial class MainWindow : Window
 
             while (leitor.Read())
             {
-                var usuarioBanco = new Usuario();
-
-                usuarioBanco.Id = leitor.GetInt32(0);
-                usuarioBanco.Nome = leitor.GetString(1);
-                usuarioBanco.Email = leitor.GetString(2);
-                usuarioBanco.Senha = leitor.GetString(3);
-                usuarioBanco.Username = leitor.GetString(4);
+                var usuarioBanco = new Usuario
+                {
+                    Id = leitor.GetInt32("id"),
+                    Nome = leitor.GetString("nome"),
+                    Email = leitor.GetString("email"),
+                    Senha = leitor.GetString("senha"),
+                    Username = leitor.GetString("username")
+                };
 
                 new Feed(usuarioBanco).Show();
             }
@@ -66,8 +68,8 @@ public partial class MainWindow : Window
     private void BtnCadastro_OnClick(object sender, RoutedEventArgs e)
     {
         var janelaCadastro = new Cadastro();
-        Hide();
-        janelaCadastro.ShowDialog();
-        Show();
+
+        janelaCadastro.Show();
+        Close();
     }
 }
