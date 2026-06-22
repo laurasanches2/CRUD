@@ -114,13 +114,14 @@ public partial class Feed : Window
         }
     }
 
-    private void btnNovoPoste_OnClick(object sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
-
     private void BtnNovoPoste_OnClick(object sender, RoutedEventArgs e)
     {
         new NovaPostagem(_usuario).ShowDialog();
+    }
+
+    private void BtnPerfil_OnClick(object sender, RoutedEventArgs e)
+    {
+        new MeuPerfil(_usuario).ShowDialog();
+        CarregarPosts_QuandoIniciar();
     }
 }
