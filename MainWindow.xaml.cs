@@ -52,24 +52,26 @@ public partial class MainWindow : Window
                     Id = leitor.GetInt32("id"),
                     Nome = leitor.GetString("nome"),
                     Email = leitor.GetString("email"),
-                    Senha = leitor.GetString("senha"),
                     Username = leitor.GetString("username")
                 };
 
                 new Feed(usuarioBanco).Show();
+                Close();
             }
         }
         catch (Exception exception)
         {
-            Console.WriteLine(exception);
+            MessageBox.Show($"Erro: {exception.Message}", "Erro!");
+        }
+        finally
+        {
+            conexao.Close();
         }
     }
 
     private void BtnCadastro_OnClick(object sender, RoutedEventArgs e)
     {
-        var janelaCadastro = new Cadastro();
-
-        janelaCadastro.Show();
+        new Cadastro().Show();
         Close();
     }
 }

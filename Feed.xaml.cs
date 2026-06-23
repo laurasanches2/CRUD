@@ -68,6 +68,10 @@ public partial class Feed : Window
         {
             Console.WriteLine(e);
         }
+        finally
+        {
+            conexao.Close();
+        }
     }
 
     private void BtnCurtir_OnClick(object sender, RoutedEventArgs e)
@@ -112,11 +116,16 @@ public partial class Feed : Window
         {
             MessageBox.Show(excecao.Message);
         }
+        finally
+        {
+            conexao.Close();
+        }
     }
 
-    private void BtnNovoPoste_OnClick(object sender, RoutedEventArgs e)
+    private void BtnNovoPost_OnClick(object sender, RoutedEventArgs e)
     {
         new NovaPostagem(_usuario).ShowDialog();
+        CarregarPosts_QuandoIniciar();
     }
 
     private void BtnPerfil_OnClick(object sender, RoutedEventArgs e)
