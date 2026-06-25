@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
+        Icon="Recursos/icon.png"
         Title="Cadastro de Usuário"
         Height="560" Width="800"
         WindowStartupLocation="CenterScreen"
@@ -22,13 +23,13 @@
                 <TextBlock Text="Criar Conta"
                            FontSize="24"
                            FontWeight="Bold"
-                           Foreground="#111827"
+                           Foreground="Plum"
                            Margin="0,0,0,20"
                            HorizontalAlignment="Center" />
 
                 <TextBlock Text="Nome"
                            FontSize="14"
-                           Foreground="#374151"
+                           Foreground="Plum"
                            Margin="0,0,0,5" />
                 <TextBox x:Name="TxtNome"
                          Height="35"
@@ -38,7 +39,7 @@
 
                 <TextBlock Text="Username"
                            FontSize="14"
-                           Foreground="#374151"
+                           Foreground="Plum"
                            Margin="0,0,0,5" />
                 <TextBox x:Name="TxtUsername"
                          Height="35"
@@ -48,7 +49,7 @@
 
                 <TextBlock Text="E-mail"
                            FontSize="14"
-                           Foreground="#374151"
+                           Foreground="Plum"
                            Margin="0,0,0,5" />
                 <TextBox x:Name="TxtEmail"
                          Height="35"
@@ -58,7 +59,7 @@
 
                 <TextBlock Text="Senha"
                            FontSize="14"
-                           Foreground="#374151"
+                           Foreground="Plum"
                            Margin="0,0,0,5" />
                 <PasswordBox x:Name="TxtSenha"
                              Height="35"
