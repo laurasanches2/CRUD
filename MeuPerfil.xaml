@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen">
 
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Border Background="White"
+        <Border Background="LavenderBlush"
                 CornerRadius="8"
                 Padding="30"
                 Width="380">
@@ -20,7 +20,7 @@
                 <TextBlock Text="Meu Perfil"
                            FontSize="24"
                            FontWeight="Bold"
-                           Foreground="#111827"
+                           Foreground="Plum"
                            Margin="0,0,0,15"
                            HorizontalAlignment="Center" />
 
@@ -36,7 +36,7 @@
 
                 <TextBlock Text="Nome"
                            FontSize="14"
-                           Foreground="#374151"
+                           Foreground="Plum"
                            Margin="0,0,0,5" />
                 <TextBox x:Name="TxtNome"
                          Height="35"
@@ -46,7 +46,7 @@
 
                 <TextBlock Text="E-mail"
                            FontSize="14"
-                           Foreground="#374151"
+                           Foreground="Plum"
                            Margin="0,0,0,5" />
                 <TextBox x:Name="TxtEmail"
                          Height="35"
@@ -56,7 +56,7 @@
 
                 <TextBlock Text="Username"
                            FontSize="14"
-                           Foreground="#374151"
+                           Foreground="Plum"
                            Margin="0,0,0,5" />
                 <TextBox x:Name="TxtUsername"
                          Height="35"
@@ -66,7 +66,7 @@
 
                 <TextBlock Text="Nova Senha"
                            FontSize="14"
-                           Foreground="#374151"
+                           Foreground="Plum"
                            Margin="0,0,0,5" />
                 <PasswordBox x:Name="TxtSenha"
                              Height="35"
@@ -77,8 +77,8 @@
                 <Button x:Name="BtnSalvar"
                         Content="Salvar Alterações"
                         Height="40"
-                        Background="#2563EB"
-                        Foreground="White"
+                        Background="White"
+                        Foreground="Plum"
                         FontWeight="Bold"
                         BorderThickness="0"
                         Cursor="Hand"
@@ -93,7 +93,7 @@
                 <Button x:Name="BtnDeletarPerfil"
                         Content="Excluir Minha Conta"
                         Background="Transparent"
-                        Foreground="#DC2626"
+                        Foreground="PaleVioletRed"
                         BorderThickness="0"
                         Margin="0,15,0,0"
                         Cursor="Hand"

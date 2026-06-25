@@ -10,7 +10,7 @@
         ResizeMode="NoResize">
 
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Border Background="White"
+        <Border Background="LavenderBlush"
                 CornerRadius="8"
                 Padding="30"
                 Width="360">
@@ -69,8 +69,8 @@
                 <Button x:Name="BtnCadastrar"
                         Content="Cadastrar"
                         Height="40"
-                        Background="#2563EB"
-                        Foreground="White"
+                        Background="White"
+                        Foreground="Plum"
                         FontWeight="Bold"
                         BorderThickness="0"
                         Cursor="Hand"
