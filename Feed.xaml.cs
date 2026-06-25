@@ -21,29 +21,36 @@ public partial class Feed : Window
         List<Postagem> listaPostagens = [];
 
         const string query =
-            "SELECT p.id, p.conteudo, p.curtidas, p.postado_em, u.nome, u.username, IF(cp.usuario_id IS NOT NULL, TRUE, FALSE) AS curtido FROM postagens p INNER JOIN usuarios u ON p.usuario_id = u.id LEFT JOIN curtidas_postagens cp ON cp.postagem_id = p.id AND cp.usuario_id = @usuario_id ORDER BY p.postado_em DESC";
+            """
+            SELECT p.id,
+                   p.conteudo,
+                   p.curtidas,
+                   p.postado_em,
+                   u.id AS usuario_id,
+                   u.nome,
+                   u.username,
+                   IF(cp.usuario_id IS NOT NULL, TRUE, FALSE) AS curtido
+            FROM postagens p
+                     INNER JOIN usuarios u ON p.usuario_id = u.id
+                     LEFT JOIN curtidas_postagens cp ON cp.postagem_id = p.id AND cp.usuario_id = @usuario_id
+            ORDER BY p.postado_em DESC
+            """;
 
         using var conexao = new MySqlConnection(App.StringConexao);
 
         using var comando = new MySqlCommand(query, conexao);
         comando.Parameters.AddWithValue("@usuario_id", _usuario.Id);
 
-        // Criar um bloco try-catch
         try
         {
-            // Dentro do try, abra a conexao
             conexao.Open();
-            // Executar o comando como leitor e guarde em uma variavel
             var leitor = comando.ExecuteReader();
-            // Verificar se o leitor não tem linhas
             if (!leitor.HasRows)
             {
-                // Se não tiver, avisar o usuário que nenhuma postagem foi encontrada
                 MessageBox.Show("Nenhum postagem foi encontrada");
                 return;
             }
 
-            // Caso tenha, ler linha por linha em uma repetição
             while (leitor.Read())
             {
                 var post = new Postagem
@@ -53,6 +60,7 @@ public partial class Feed : Window
                     Curtidas = leitor.GetInt32("curtidas"),
                     PostadoEm = leitor.GetDateTime("postado_em"),
                     FoiCurtido = leitor.GetBoolean("curtido"),
+                    SuaPostagem = leitor.GetInt32("usuario_id") == _usuario.Id,
                     Usuario = new Usuario
                     {
                         Nome = leitor.GetString("nome"),
@@ -132,5 +140,43 @@ public partial class Feed : Window
     {
         new MeuPerfil(_usuario).ShowDialog();
         CarregarPosts_QuandoIniciar();
+    }
+
+    private void BtnEditarPostagem_OnClick(object sender, RoutedEventArgs e)
+    {
+    }
+
+    private void BtnApagarPostagem_OnClick(object sender, RoutedEventArgs e)
+    {
+        var resultadoConfirmacao = MessageBox.Show("Tem certeza que deseja apagar a postagem?",
+            "Confirmar exclusão",
+            MessageBoxButton.YesNo);
+
+        if (resultadoConfirmacao == MessageBoxResult.No) return;
+
+        var botao = (Button)sender;
+        var postagemId = (int)botao.Tag;
+
+        using var conexao = new MySqlConnection(App.StringConexao);
+        const string query = "DELETE FROM postagens WHERE id = @postagem_id";
+        using var comando = new MySqlCommand(query, conexao);
+        comando.Parameters.AddWithValue("@postagem_id", postagemId);
+
+        try
+        {
+            conexao.Open();
+            var linhasAfetadas = comando.ExecuteNonQuery();
+            if (linhasAfetadas < 1) throw new Exception("A ação de exclusão do post não deu certo!");
+            MessageBox.Show("Sua postagem foi deletada");
+            CarregarPosts_QuandoIniciar();
+        }
+        catch (Exception exception)
+        {
+            MessageBox.Show($"Erro de DB: {exception.Message}");
+        }
+        finally
+        {
+            conexao.Close();
+        }
     }
 }
